@@ -1,0 +1,12 @@
+# Netlify config for Next.js (Ridely frontend)
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Next.js plugin (Netlify auto-detects; this makes it explicit)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
