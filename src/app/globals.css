@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --uber-black: #000000;
+  --uber-gray: #eeeeee;
+  --uber-green: #00d68f;
+  --uber-green-dark: #00b377;
+  --panel-height: 40vh;
+}
+
+/* Base - mobile-first */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-black antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safe area for notched devices */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Bottom sheet panel - Uber style */
+.panel {
+  @apply fixed left-0 right-0 rounded-t-2xl bg-white shadow-panel;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  min-height: var(--panel-height);
+}
+
+/* Map container full viewport */
+.map-container {
+  @apply absolute inset-0 w-full h-full;
+}
+
+/* Custom scrollbar for ride lists */
+.ride-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ride-list::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+}
+
+.ride-list::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+/* Skeleton loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  @apply bg-gray-200 rounded;
+  background: linear-gradient(
+    90deg,
+    theme("colors.gray.200") 25%,
+    theme("colors.gray.100") 50%,
+    theme("colors.gray.200") 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Focus ring for accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-uber-green focus:ring-offset-2;
+}
